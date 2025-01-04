@@ -139,7 +139,9 @@ def view_posts():
 		return render_template("view_posts.html", posts=posts)
 
 	return redirect(url_for('home'))
-	
+
+
+#more testing
 
 
 
@@ -230,4 +232,3 @@ if __name__ == "__main__":
 	app.run(debug=True)
 
 
-# git test comment :)
