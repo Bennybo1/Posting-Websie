@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main_styles.css') }}">
+	{% block title %}<title>Title</title>{% endblock %}
+</head>
+<body>
+	{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages %}
+		<ul>
+			{% for category, message in messages %}
+				<li class="flash-{{ category}}">{{ message }}</li>
+			{% endfor %}
+		</ul>
+			
+		{% endif %}
+	{% endwith %}
+	
+	<header id="header">
+		{% block header_content %}
+			<h1>Not Set</h1>
+			<h4>Not Set</h4>
+			{% endblock %}
+	</header>
+
+	{% block content %}
+
+
+	{% endblock %}
+
+
+	<footer id="footer">
+		<a id="google_anchor" href="https://github.com/Bennybo1?tab=repositories target=">Links Here</a>
+	</footer>
+
+	
+		
+</body>
+</html>

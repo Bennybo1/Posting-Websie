@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Sign Up</title>{% endblock %}
+
+{% block header_content %}
+<h1>Sign Up</h1>
+<h4>Create A New Account Here!</h4>
+
+{% endblock %}
+
+
+{% block content %}
+
+<form action="/sign_up" method="POST">
+	<input type="text" name="username" id="username_box" placeholder="Username">
+	<input type="password" name="password" id="password_box" placeholder="Password">
+	<button type="submit" value="submit" id="enter_button">Enter</button>
+</form>
+<form action="/" method="GET">
+	<button type="submit" class="back_button">Back</button>
+</form>
+
+{% endblock %}

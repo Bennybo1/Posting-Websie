@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block title %}<title>Sign Up Or Login</title>{% endblock %}
+
+
+{% block content %}
+	<form action="/login" method="GET">
+		<button id="login" type="submit">Log In</button>
+	</form>
+
+	<form action="/sign_up" method="GET">
+		<button id="sign_up" type="submit">Sign Up</button>
+	</form>
+
+{% endblock %}
+
+
+{% block header_content %}
+	<h1>Welcome!</h1>
+	<h4>Don't Have An Account? Make One Today!</h4>
+{% endblock %}
+
+

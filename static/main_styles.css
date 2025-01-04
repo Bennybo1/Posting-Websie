@@ -1,0 +1,348 @@
+* {
+	margin: 0;
+}
+
+
+#header {
+	position: relative;
+	top: 10px;
+	text-align: center;
+	background-color:lightgray;
+	padding: 10px;
+	color: black;
+	
+}
+
+
+#login {
+	background-color: lightgrey;
+	color: black;
+	position: absolute;
+	top: 190px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+	width: 255px;
+	font-size: 19px;
+	padding: 0.5em 1em;
+	border-radius: 1em;
+	border: none;
+	cursor: pointer;
+
+}
+
+#login:hover {
+	background-color: #201f1e;
+	color: #bfbebc;
+}
+
+
+
+#sign_up {
+	background-color: #201f1e;
+	color: #bfbebc;
+	position: absolute;
+	top: 260px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+	width: 255px;
+	font-size: 19px;
+	padding: 0.5em 1em;
+	border-radius: 1em;
+	border: none;
+	cursor: pointer;
+}
+
+
+#sign_up:hover {
+	background-color: lightgrey;
+	color: black;
+}
+
+#footer {
+
+	position: relative;
+	top: 485px;
+	text-align: center;
+	background-color: #201f1e;
+	padding: 10px;
+	color: #bfbebc;
+}
+
+
+#google_anchor {
+	font-size: 25px;
+	color: #bfbebc;
+
+}
+
+
+
+#username_box {
+
+	position: absolute;
+	top: 220px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+  	font-size: 23px;
+  	
+}
+
+#password_box {
+	position: absolute;
+	top: 270px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+  	font-size: 23px;
+  	
+}
+
+#enter_button {
+	position: absolute;
+	top: 320px;
+	font-size: 20px;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	cursor: pointer;
+}
+
+.flash-info {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 175px;
+	color: royalblue;
+	font-size: 17px;
+}
+
+.flash-error {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 175px;
+  	font-size: 17px;
+	color: red;
+}
+
+.flash-error2 {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 140px;
+  	font-size: 17px;
+	color: red;
+}
+
+.flash-info2 {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 140px;
+	color: royalblue;
+	font-size: 17px;
+}
+
+.flash-good2 {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 140px;
+  	font-size: 17px;
+	color: darkolivegreen;
+}
+.flash-good {
+	position: absolute;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	top: 135px;
+  	font-size: 17px;
+	color: darkolivegreen;
+}
+
+
+#view_button {
+	position: absolute;
+	top: 260px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+	width: 255px;
+	font-size: 19px;
+	padding: 0.5em 1em;
+	border-radius: 1em;
+	border: none;
+	cursor: pointer;
+}
+
+
+#post_button {
+	position: absolute;
+	background-color: #201f1e;
+	font-size: 37px;
+	text-align: center;
+	color: #bfbebc;
+	top: 340px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+	width: 105px;
+	height: 105px;
+	padding: 0.5em 1em;
+	border-radius: 1em;
+	border: none;
+	cursor: pointer;
+
+}
+
+#view_my_button {
+	position: absolute;
+	top: 190px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+	width: 255px;
+	font-size: 19px;
+	padding: 0.5em 1em;
+	border-radius: 1em;
+	border: none;
+	cursor: pointer;
+
+}
+
+#title {
+	position: absolute;
+	top: 160px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+  	width: 170px;
+  	font-size: 18px;
+}
+
+#description {
+	position: absolute;
+	top: 230px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-50%); /* Offset it by 50% of its own height */
+  	width: 270px;
+  	height: 225px;
+  	text-align: left;
+  	font-size: 13px;
+}
+
+
+#file {
+	position: absolute;
+	top: 480px;
+	left: 50%; /* Position the button 50% from the top */
+  	transform: translateX(-40%); /* Offset it by 50% of its own height */
+
+}
+
+
+#enter_post {
+	position: absolute;
+	top: 520px;
+	font-size: 20px;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	cursor: pointer;
+}
+
+
+
+.container {
+	position: relative;
+	align-content: center;
+	top: 100px;
+	background-color: lightgrey;
+	border-radius: 10px;
+	width: 500px;
+	height: 400px;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+  	margin-bottom: 20px;
+  	overflow: hidden;
+
+
+}
+
+.namebar {
+	padding: 5px;
+	top: 0px;
+	position: absolute;
+	text-align: left;
+	width: 100%;
+	background-color: darkgray;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+
+}
+
+.date {
+	top: 370px;
+	left: 410px;
+	position: absolute;
+	text-align: right;
+	color: lightslategrey;
+}
+
+.title {
+	font-size: 25px;
+	text-align: left;
+
+
+}
+
+.name {
+	font-size: 14px;
+}
+
+.description {
+	padding-right: 5px;
+	position: absolute;
+	top: 62px;
+	padding: 5px;
+	word-wrap: break-word; /* Ensures long words wrap onto the next line */
+    overflow-wrap: break-word; /* Modern alternative to word-wrap */
+    white-space: normal; /* Ensures text wraps to the next line */
+    max-width: 98%; /* Constrains the width to the container */
+    overflow: hidden; /* Prevents text from spilling outside the container */
+    
+}
+
+
+
+.back_button {
+	border-radius: 1em;
+	font-size: 28px;
+	color: #201f1e;
+	position: absolute;
+	top: 475px;
+	left: 50%; /* Position the button 50% from the left */
+  	transform: translateX(-50%); /* Offset it by 50% of its own width */
+	border: none;
+	width: 100px;
+	height: 55px;
+	cursor: pointer;
+}
+
+
+.back_button2 {
+	border-radius: 1em;
+	font-size: 28px;
+	color: #201f1e;
+	position: fixed;
+	top: 250px;
+  	left: 1000px;
+	border: none;
+	width: 100px;
+	height: 55px;
+	cursor: pointer;
+}
+
+
+
+.delete {
+	border: none;
+	border-radius: 1em;
+	position: absolute;
+	left: 422px;
+	top: 8px;
+	cursor: pointer;
+}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}<title>Post</title>{% endblock %}
+
+
+
+{% block header_content %}
+<h1>Post</h1>
+<h4>Upload Content Here!</h4>
+{% endblock %}
+
+
+{% block content %}
+<form action="/post" method="Post">
+	<input type="text" placeholder="Title" name="title" id="title">
+	<textarea placeholder="Description" name="description" id="description"></textarea>
+	
+	<button type="submit" id="enter_post">Post</button>
+</form>
+
+<form action="/account" method="GET">
+	<button type="submit" class="back_button2">Back</button>
+</form>
+{% endblock %}
