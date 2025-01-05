@@ -3,13 +3,25 @@ from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 from datetime import datetime
 from sqlalchemy import desc
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = 'Tottenham6th'
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/blog_database'
+
+database = os.getenv("DATABASE")
+host = os.getenv("HOST")
+name = os.getenv("NAME")
+password = os.getenv("PASSWORD")
+secret_key = os.getenv("SECRET_KEY")
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{name}:{password}@{host}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.secret_key = secret_key
 
 db = SQLAlchemy(app)
 
