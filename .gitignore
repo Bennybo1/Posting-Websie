@@ -2,8 +2,9 @@
 
 *.pyc
 __pycache__/
-#hi
+
 
 venv/
 
 requirements.txt
+
