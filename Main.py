@@ -6,8 +6,8 @@ load_dotenv()
 
 #Bp imports
 #from file import blueprint name
-from Blueprints import auth_bp
 app = Flask(__name__)
+from Blueprints import auth_bp
 app.register_blueprint(auth_bp)
 from Blueprints import account_bp
 app.register_blueprint(account_bp)
