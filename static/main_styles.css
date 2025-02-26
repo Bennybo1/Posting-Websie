@@ -212,6 +212,7 @@
   	transform: translateX(-50%); /* Offset it by 50% of its own height */
   	width: 170px;
   	font-size: 18px;
+
 }
 
 #description {
@@ -343,6 +344,6 @@
 	border-radius: 1em;
 	position: absolute;
 	left: 422px;
-	top: 8px;
+	top: 33px;
 	cursor: pointer;
 }

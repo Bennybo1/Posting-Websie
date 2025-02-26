@@ -1,28 +1,30 @@
-from flask_sqlalchemy import SQLAlchemy
+from Main import Base
+from sqlalchemy import create_engine, Integer, String, Date, Float, Boolean, Column, ForeignKey, CHAR
 
 
 
-db = SQLAlchemy()
 
 
 #database
-class Users(db.Model):
-	id = db.Column("id", db.Integer, primary_key=True)
-	username = db.Column("username", db.String(50))
-	password = db.Column("password", db.String(100))
+class Users(Base):
+	__tablename__ = "Users"
+	id = Column("id", Integer, primary_key=True)
+	username = Column("username", String(50))
+	password = Column("password", String(100))
 
 	def __init__(self, username, password):
 		self.username = username
 		self.password = password
 
 
-class Posts(db.Model):
-	id = db.Column(db.Integer, primary_key=True)  # Unique primary key for each post
-	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Reference to Users' id
-	date = db.Column(db.String(30), nullable=False)
-	title = db.Column(db.String(50), nullable=False)
-	description = db.Column(db.String(400), nullable=True)
-	username = db.Column(db.String(50), nullable=False)
+class Posts(Base):
+	__tablename__ = "Posts"
+	id = Column(Integer, primary_key=True)  # Unique primary key for each post
+	user_id = Column(Integer, ForeignKey('Users.id'), nullable=False)  # Reference to Users' id
+	date = Column(String(30), nullable=False)
+	title = Column(String(50), nullable=False)
+	description = Column(String(400), nullable=True)
+	username = Column(String(50), nullable=False)
 	
 
 	def __init__(self, user_id, date, title, description, username):

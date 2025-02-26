@@ -1,17 +1,22 @@
 from flask import Flask, redirect, url_for, render_template, flash, request, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+
+
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
+
+
+
+
 #Bp imports
 #from file import blueprint name
 app = Flask(__name__)
-from Blueprints import auth_bp
-app.register_blueprint(auth_bp)
-from Blueprints import account_bp
-app.register_blueprint(account_bp)
-from Models import db
+
+
 
 
 
@@ -21,11 +26,12 @@ name = os.getenv("NAME")
 password = os.getenv("PASSWORD")
 secret_key = os.getenv("SECRET_KEY")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{name}:{password}@{host}/{database}'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+engine = create_engine(f'mysql+mysqlconnector://{name}:{password}@{host}/{database}')
+Session = sessionmaker(bind=engine) #makes a session so we can query
+sesh = Session() #puts it into a variable we can use
+Base = declarative_base()
 app.secret_key = secret_key
 
-db.init_app(app)
 
 
 
@@ -39,7 +45,12 @@ def home():
 
 if __name__ == "__main__":
 	with app.app_context():
-		db.create_all()
+		# Create all tables in the database
+		#also import bp to prevent import circles
+		Base.metadata.create_all(bind=engine)
+		from Blueprints import auth_bp, account_bp
+		app.register_blueprint(auth_bp)
+		app.register_blueprint(account_bp)
 	app.run(debug=True)
 
 

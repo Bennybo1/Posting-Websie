@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, url_for, request, flash, redirect
-from Models import db, Posts, Users
+from Models import Users, Posts
+from Main import sesh
 from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 
 
@@ -16,7 +16,7 @@ account_bp = Blueprint("account_bp", __name__, static_folder="static", template_
 def view_posts():
 	if 'name' in session:
 		username = session.get("name")
-		posts = Posts.query.order_by(desc(Posts.id)).all()
+		posts = sesh.query(Posts).order_by(desc(Posts.id)).all()
 		return render_template("view_posts.html", posts=posts)
 
 	return redirect(url_for('home'))
@@ -29,7 +29,7 @@ def view_posts():
 def view_my_posts():
 	if "name" in session:
 		username = session.get('name')
-		posts = Posts.query.filter_by(username=username).order_by(desc(Posts.id)).all()
+		posts = sesh.query(Posts).filter(Posts.username == username).order_by(desc(Posts.id)).all()
 		return render_template('view_my_posts.html', posts=posts)
 	return redirect(url_for('home'))
 
@@ -44,7 +44,7 @@ def post():
 			
 			now = datetime.now()
 			formatted_date = now.strftime("%m-%d-%Y")
-			user = Users.query.filter_by(username=username).first()
+			user = sesh.query(Users).filter(Users.username == username).first()
 
 
 			if not user:
@@ -54,8 +54,8 @@ def post():
 			elif not title:
 				flash("Post Must Include Title", "info2")
 				
-			elif len(title) > 50:
-				flash("Post Title Cannot Exceed 50 Characters", "info2")
+			elif len(title) > 40:
+				flash("Post Title Cannot Exceed 40 Characters", "info2")
 				
 			elif len(description) > 400:
 				flash("Post Description Cannot Exceed 400 Characters", "info2")
@@ -64,11 +64,11 @@ def post():
 			else:
 				try:
 					post_data = Posts(user.id, formatted_date, title, description, username)
-					db.session.add(post_data)
-					db.session.commit()
+					sesh.add(post_data)
+					sesh.commit()
 					flash(f"Successfully Posted '{title}'", "good2")
 				except Exception as e:
-					db.session.rollback()
+					sesh.rollback()
 					flash(f"Error Posting {title}. {e}", "error2")
 
 
@@ -101,11 +101,11 @@ def logout():
 def delete():
 	post_id = request.form.get('post_id')
 	
-	post_to_delete = Posts.query.filter_by(id=post_id).first()
+	post_to_delete = sesh.query(Posts).filter(Posts.id == post_id).first()
 	title = post_to_delete.title
 	if post_to_delete:
-		db.session.delete(post_to_delete)
-		db.session.commit()
+		sesh.delete(post_to_delete)
+		sesh.commit()
 		flash(f"Successfully Deleted Post '{title}'!", "good2")
 		return redirect(url_for('account_bp.view_my_posts'))
 

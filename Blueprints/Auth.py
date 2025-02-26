@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, session, url_for, request, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 #gets out database info and models
-from Models import db, Users
+from Models import Users
+from Main import sesh
 
 #creates our blueprint
 auth_bp = Blueprint("auth_bp", __name__, static_folder="static", template_folder="templates")
@@ -17,7 +17,7 @@ def login():
 	if request.method == "POST":
 		username = request.form["username"]
 		password = request.form["password"]
-		existing_user = Users.query.filter_by(username=username).first()
+		existing_user = sesh.query(Users).filter(Users.username == username).first()
 		#filtered result ex: Jim | JimLikesCows@_Mo0
 		#So all we have to do it check if the password is equal to the Users.password because there is only one!
 							#use the name existing user because thats the name of the query we made up there
@@ -45,7 +45,7 @@ def sign_up():
 		password = request.form["password"]
 
 
-		existing_user = Users.query.filter_by(username=username).first()
+		existing_user = sesh.query(Users).filter(Users.username == username).first()
 		if existing_user: #is true
 			flash("Name is Already Taken! Please Try another one", "info")
 
@@ -70,14 +70,14 @@ def sign_up():
 				try:
 					
 					
-					db.session.add(passed_data)
-					db.session.commit()
+					sesh.add(passed_data)
+					sesh.commit()
 					flash("Successfully Made Account", "good")
 					session['name'] = username
 					return redirect(url_for("account_bp.account", username=username))
 					
 				except Exception as e:
-					db.session.rollback()
+					sesh.rollback()
 					flash(f"Error Making Account. {e}", "error")
 					
 
