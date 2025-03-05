@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+	<title>Edit</title>
+{% endblock%}
+
+
+{% block header_content %}
+	<h1>Edit</h1>
+	<h4>Fix up previous posts</h4>
+{% endblock %}
+
+
+
+{% block content %}
+<form action="/edit" method="post">
+	<form action="/edit" method="post">
+    <input type="text" placeholder="Title" name="new_title" id="title" value="{{ old_title }}">
+    <textarea placeholder="Description" name="new_description" id="description">{{ old_desc }}</textarea>
+    <input type="hidden" name="post_id" value="{{ post_id }}">
+    <button type="submit" id="enter_post">Edit</button>
+</form>
+</form>
+
+<form action="/account" method="GET">
+	<button type="submit" class="back_button2">Back</button>
+</form>
+{% endblock %}

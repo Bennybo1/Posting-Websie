@@ -15,6 +15,7 @@
 		<div class="container">
 			<div class="namebar">
 				<h3 class="title">{{post.title}}</h3><p class="name">{{post.username}}</p><p class="date">{{post.date}}</p>
+				<p class="edited2">{% if post.edited %}Edited{% else %} {% endif %}</p>
 			</div>
 			
 			<p class="description">{{post.description}}</p>

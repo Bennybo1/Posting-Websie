@@ -25,6 +25,7 @@ class Posts(Base):
 	title = Column(String(50), nullable=False)
 	description = Column(String(400), nullable=True)
 	username = Column(String(50), nullable=False)
+	edited = Column(Boolean, default=False)
 	
 
 	def __init__(self, user_id, date, title, description, username):

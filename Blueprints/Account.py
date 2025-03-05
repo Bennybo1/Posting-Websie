@@ -112,3 +112,48 @@ def delete():
 	else:
 		flash(f"Error, Could not Delete Post '{title}'", "error2")
 		return redirect(url_for('account_bp.view_my_posts'))
+
+@account_bp.route('/edit', methods=['POST', 'GET'])
+def edit():
+	if 'name' in session:
+		
+		if request.method == "GET":
+			post_id = request.args.get('post_id')
+			if post_id == None:
+				flash("Cannot Find Post To Edit!", "error2")
+				return redirect(url_for("account_bp.account"))
+			current_post = sesh.query(Posts).filter(Posts.id == post_id).first()
+			old_title = current_post.title
+			old_desc = current_post.description
+			return render_template("edit.html", post_id=post_id, old_title=old_title, old_desc=old_desc)
+			
+
+		elif request.method == "POST":
+			old_title = request.form.get("title")
+			old_desc = request.form.get("description")
+			new_title = request.form.get('new_title')
+			new_desc = request.form.get('new_description')
+			post_id = request.form.get('post_id')
+			
+
+			if not new_title:
+				flash("Title Cannot Be Empty!", "info2")
+			elif len(new_desc) > 399:
+				flash("Description Cannot Exceed 399 Characters!", "info2")
+
+			elif len(new_title) > 39:
+				flash("Title Cannot Exceed 39 Characters!", "info2")
+			else:
+				post_to_edit = sesh.query(Posts).filter(Posts.id == post_id).first()
+				post_to_edit.title = new_title
+				post_to_edit.description = new_desc
+				post_to_edit.edited = True
+				sesh.commit()
+				flash("Successfully Edited Post!", "good2")
+				return redirect(url_for("account_bp.account"))
+				
+			current_post = sesh.query(Posts).filter(Posts.id == post_id).first()
+			old_title = current_post.title
+			old_desc = current_post.description
+			return render_template("edit.html", post_id=post_id, old_title=old_title, old_desc=old_desc)
+	return redirect(url_for('home'))

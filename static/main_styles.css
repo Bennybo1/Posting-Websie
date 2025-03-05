@@ -69,9 +69,10 @@
 }
 
 
-#google_anchor {
+#link_anchor {
 	font-size: 25px;
 	color: #bfbebc;
+	text-decoration: none;
 
 }
 
@@ -212,6 +213,7 @@
   	transform: translateX(-50%); /* Offset it by 50% of its own height */
   	width: 170px;
   	font-size: 18px;
+  	display: inline;
 
 }
 
@@ -253,12 +255,16 @@
 	top: 100px;
 	background-color: lightgrey;
 	border-radius: 10px;
-	width: 500px;
+	width: 800px;
 	height: 400px;
 	left: 50%; /* Position the button 50% from the left */
   	transform: translateX(-50%); /* Offset it by 50% of its own width */
   	margin-bottom: 20px;
-  	overflow: hidden;
+  	word-wrap: break-word; /* Ensures long words wrap onto the next line */
+    overflow-wrap: break-word; /* Modern alternative to word-wrap */
+    white-space: normal; /* Ensures text wraps to the next line */
+    max-width: 98%; /* Constrains the width to the container */
+    overflow: hidden; /* Prevents text from spilling outside the container */
 
 
 }
@@ -277,7 +283,7 @@
 
 .date {
 	top: 370px;
-	left: 410px;
+	left: 690px;
 	position: absolute;
 	text-align: right;
 	color: lightslategrey;
@@ -286,14 +292,29 @@
 .title {
 	font-size: 25px;
 	text-align: left;
-
+	font-family: 'Source Code Pro', monospace;
 
 }
 
 .name {
 	font-size: 14px;
+	display: inline;
+	font-family: 'Source Code Pro', monospace;
 }
-
+.edited {
+	position: relative;
+	font-size: 14px;
+	color: #6b6969;
+	left: 540px;
+	display: inline;
+}
+.edited2 {
+	position: relative;
+	font-size: 14px;
+	color: #6b6969;
+	left: 690px;
+	display: inline;
+}
 .description {
 	padding-right: 5px;
 	position: absolute;
@@ -304,14 +325,14 @@
     white-space: normal; /* Ensures text wraps to the next line */
     max-width: 98%; /* Constrains the width to the container */
     overflow: hidden; /* Prevents text from spilling outside the container */
-    
+    font-family: 'Source Code Pro', monospace;
 }
 
 
 
 .back_button {
 	border-radius: 1em;
-	font-size: 28px;
+	font-size: 19px;
 	color: #201f1e;
 	position: absolute;
 	top: 475px;
@@ -326,11 +347,11 @@
 
 .back_button2 {
 	border-radius: 1em;
-	font-size: 28px;
+	font-size: 19px;
 	color: #201f1e;
 	position: fixed;
-	top: 250px;
-  	left: 1000px;
+	top: 475px;
+  	left: 1100px;
 	border: none;
 	width: 100px;
 	height: 55px;
@@ -343,7 +364,17 @@
 	border: none;
 	border-radius: 1em;
 	position: absolute;
-	left: 422px;
+	left: 720px;
+	top: 33px;
+	cursor: pointer;
+}
+
+
+.edit {
+	border: none;
+	border-radius: 1em;
+	position: absolute;
+	left: 650px;
 	top: 33px;
 	cursor: pointer;
 }
