@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, session, url_for, request, flash, redirect
+from flask import Blueprint, render_template, session, url_for, request, flash, redirect, make_response
 import bcrypt
 #gets out database info and models
 from Models import Users
 from Main import sesh
-
+from Main import secret_key
 #creates our blueprint
 auth_bp = Blueprint("auth_bp", __name__, static_folder="static", template_folder="templates")
 
@@ -14,7 +14,12 @@ auth_bp = Blueprint("auth_bp", __name__, static_folder="static", template_folder
 
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
-	if request.method == "POST":
+	username = session.get('name')
+
+	if username:
+		flash('Session Auto Sign In', 'good2')
+		return redirect(url_for("account_bp.account", username=username))
+	elif request.method == "POST":
 		username = request.form["username"]
 		password = request.form["password"]
 		existing_user = sesh.query(Users).filter(Users.username == username).first()
@@ -25,6 +30,7 @@ def login():
 			try:
 				flash("Successfully Logged in", "good")
 				session['name'] = username
+				
 				return redirect(url_for("account_bp.account", username=username))
 				
 

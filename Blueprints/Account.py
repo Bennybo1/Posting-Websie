@@ -31,7 +31,8 @@ def view_my_posts():
 		username = session.get('name')
 		posts = sesh.query(Posts).filter(Posts.username == username).order_by(desc(Posts.id)).all()
 		return render_template('view_my_posts.html', posts=posts)
-	return redirect(url_for('home'))
+	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	return redirect(url_for('auth_bp.login'))
 
 
 @account_bp.route('/post', methods=["POST", "GET"])
@@ -73,7 +74,8 @@ def post():
 
 
 		return render_template('post.html')
-	return redirect(url_for('home'))
+	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	return redirect(url_for('auth_bp.login'))
 
 
 
@@ -83,7 +85,8 @@ def account():
 		username = session.get("name")
 		return render_template("account.html", username=username)
 	
-	return redirect(url_for('home'))
+	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	return redirect(url_for('auth_bp.login'))
 
 
 
@@ -94,7 +97,8 @@ def logout():
 	username = session.get('name')
 	flash(f"Successfully Logged Out of {username}!", "good")
 	session.pop('name', None)
-	return redirect(url_for('home'))
+	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	return redirect(url_for('auth_bp.login'))
 
 
 @account_bp.route('/delete', methods=["POST"])
@@ -156,4 +160,5 @@ def edit():
 			old_title = current_post.title
 			old_desc = current_post.description
 			return render_template("edit.html", post_id=post_id, old_title=old_title, old_desc=old_desc)
-	return redirect(url_for('home'))
+	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	return redirect(url_for('auth_bp.login'))

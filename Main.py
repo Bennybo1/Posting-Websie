@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, flash, request, ses
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-
+from datetime import timedelta
 
 from dotenv import load_dotenv
 import os
@@ -31,7 +31,8 @@ Session = sessionmaker(bind=engine) #makes a session so we can query
 sesh = Session() #puts it into a variable we can use
 Base = declarative_base()
 app.secret_key = secret_key
-
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+secret_key = secret_key
 
 
 
