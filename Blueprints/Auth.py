@@ -14,6 +14,7 @@ auth_bp = Blueprint("auth_bp", __name__, static_folder="static", template_folder
 
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
+	#tries to get session if its there already
 	username = session.get('name')
 
 	if username:
@@ -31,7 +32,7 @@ def login():
 				flash("Successfully Logged in", "good")
 				session['name'] = username
 				
-				return redirect(url_for("account_bp.account", username=username))
+				return redirect(url_for("account_bp.account"))
 				
 
 			except Exception as e:
@@ -46,7 +47,14 @@ def login():
 
 @auth_bp.route('/sign_up', methods=["GET", "POST"])
 def sign_up():
-	if request.method == "POST":
+	username = session.get('name')
+
+	if username:
+		flash('Session Auto Sign In', 'good2')
+		return redirect(url_for("account_bp.account", username=username))
+
+		
+	elif request.method == "POST":
 		username = request.form["username"]
 		password = request.form["password"]
 
@@ -80,7 +88,7 @@ def sign_up():
 					sesh.commit()
 					flash("Successfully Made Account", "good")
 					session['name'] = username
-					return redirect(url_for("account_bp.account", username=username))
+					return redirect(url_for("account_bp.account"))
 					
 				except Exception as e:
 					sesh.rollback()

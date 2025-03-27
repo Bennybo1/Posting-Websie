@@ -31,7 +31,7 @@ def view_my_posts():
 		username = session.get('name')
 		posts = sesh.query(Posts).filter(Posts.username == username).order_by(desc(Posts.id)).all()
 		return render_template('view_my_posts.html', posts=posts)
-	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	
 	return redirect(url_for('auth_bp.login'))
 
 
@@ -74,7 +74,7 @@ def post():
 
 
 		return render_template('post.html')
-	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	
 	return redirect(url_for('auth_bp.login'))
 
 
@@ -85,7 +85,7 @@ def account():
 		username = session.get("name")
 		return render_template("account.html", username=username)
 	
-	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	
 	return redirect(url_for('auth_bp.login'))
 
 
@@ -97,7 +97,7 @@ def logout():
 	username = session.get('name')
 	flash(f"Successfully Logged Out of {username}!", "good")
 	session.pop('name', None)
-	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	
 	return redirect(url_for('auth_bp.login'))
 
 
@@ -160,5 +160,5 @@ def edit():
 			old_title = current_post.title
 			old_desc = current_post.description
 			return render_template("edit.html", post_id=post_id, old_title=old_title, old_desc=old_desc)
-	flash('Session Timeout Or Not Registered User. Please login', 'error')
+	
 	return redirect(url_for('auth_bp.login'))

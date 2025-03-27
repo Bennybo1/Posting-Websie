@@ -31,12 +31,14 @@ Session = sessionmaker(bind=engine) #makes a session so we can query
 sesh = Session() #puts it into a variable we can use
 Base = declarative_base()
 app.secret_key = secret_key
+
+
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
-secret_key = secret_key
+app.config['SESSION_COOKIE_HTTPONLY'] = True #dont allow js to edit
+app.config['SESSION_COOKIE_SECURE'] = True  # Only over HTTPS secure connections are sent over
 
 
-
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #prevents unwanted tracking messages to waste memory and performance
 #Account Creation and stuff
 @app.route('/', methods=["GET"])
 def home():

@@ -5,14 +5,14 @@
 
 
 {% block content %}
-	<form action="/login" method="GET">
-		<button id="login" type="submit">Log In</button>
-	</form>
-
-	<form action="/sign_up" method="GET">
-		<button id="sign_up" type="submit">Sign Up</button>
-	</form>
-
+	
+	<a href="/login">
+		<button type="button" id="login">Log In</button>
+	</a>
+	
+	<a href="/sign_up">
+		<button type="button" id="sign_up">Sign Up</button>
+	</a>
 {% endblock %}
 
 

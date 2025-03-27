@@ -2,26 +2,32 @@
 
 {% block title %}<title>User Page</title>{% endblock %}
 {% block header_content %}
-<h1>Hey {{ username }}!</h1>
+<h1>Hey {{ session['name'] }}!</h1>
 <h4>Create or View Blogs Here!</h4>
 
 {% endblock %}
 
 {% block content %}
 
-<form action="/view_posts" method="GET">
-	<button type="submit" id="view_button">View Posts</button>
-</form>
+<a href="/view_posts">
+	<button type="button" id="view_button">View Posts</button>
+</a>
 
-<form action="/post" method="GET">
-	<button type="submit" id="post_button">+</button>
-</form>
 
-<form action="/view_my_posts" method="GET">
-	<button type="submit" id="view_my_button">View My Posts</button>
-</form>
 
-<form action="/logout" method="GET">
-	<button type="submit" class="back_button">Logout</button>
-</form>
+<a href="/post">
+	<button type="button" id="post_button">+</button>
+</a>
+
+
+
+<a href="/view_my_posts">
+	<button type="button" id="view_my_button">View My Posts</button>
+</a>
+
+
+
+<a href="/logout">
+	<button type="button" class="back_button">Logout</button>
+</a>
 {% endblock %}
